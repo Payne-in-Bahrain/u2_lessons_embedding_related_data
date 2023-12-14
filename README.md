@@ -301,7 +301,7 @@ Cool, so let's add the form to **movies/show.ejs** right under the current `</se
     <option value="4">4</option>
     <option value="5" selected>5</option>
   </select>
-  <input type="submit" value="Add Review">
+  <button type="submit" value="Add Review">
 </form>
 ```
 
