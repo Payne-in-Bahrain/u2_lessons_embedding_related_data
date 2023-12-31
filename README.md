@@ -132,9 +132,73 @@ Note that the above scenario stores reviews and movies in separate collections.
 
 Because only a single collection can be queried at a time, this requires two separate database queries if we want access to both a movie and its reviews.
 
-This is the reason _embedding_ is considerably more efficient...
+This is the reason embedding is considered more efficient in certain scenarios, particularly when data retrieval involves frequent access to related information within the same document. However, it's essential to note that embedding is not always the best choice when designing relationships between entities in a database. There are cases where referencing data, linking documents through identifiers, offers advantages such as improved consistency, flexibility, and easier updates. The decision between embedding and referencing depends on factors like data size, update frequency, and the nature of queries.
 
-#### Embedding Reviews
+### Example Scenario
+
+Consider a scenario where you have a collection of blog posts and comments. Embedding comments within each blog post may be efficient if comments are relatively small and updated infrequently. On the other hand, referencing comments by their unique identifiers may be more suitable if comments are extensive or frequently updated. It's crucial to carefully analyze the specific requirements of your application and the nature of your data to make an informed decision.
+
+### Embedding Data
+
+- **Efficiency in Read Operations:** Embedding is efficient when data retrieval frequently involves accessing related information within the same document. This minimizes the need for complex joins or multiple queries.
+  
+- **Improved Performance:** Embedded documents can be retrieved with a single query, reducing the number of database operations and improving performance.
+
+- **Consistency:** Since related data is stored together, changes to one document can be atomic, ensuring consistency within the document.
+
+### Referencing Data
+
+- **Flexibility in Querying:** Referencing allows for more flexibility in querying and aggregating data. You can perform complex queries and aggregations across documents easily.
+
+- **Easier Updates:** Referencing simplifies updates to related data. Changes can be made to a single document, and the updates automatically apply to all references.
+
+- **Reduced Data Redundancy:** Referencing avoids data redundancy by storing shared information in separate documents. This can be beneficial for large datasets.
+
+### Considerations
+
+- **Data Size:** Consider the size of the embedded data. If the embedded data is large and frequently updated, referencing may be more suitable.
+
+- **Update Frequency:** If the related data is updated frequently, referencing allows for more efficient updates without duplicating information.
+
+- **Nature of Queries:** Evaluate the types of queries your application needs to perform. If your queries involve frequent access to related data, embedding may be more efficient.
+
+- **Scalability:** Consider the scalability of your data. As your dataset grows, the choice between embedding and referencing may have implications for performance and storage.
+
+### Embedding Data is an Example of a Denormalized Data Structure
+
+In denormalized data structures, redundant data is intentionally introduced to improve read performance. While it can enhance query speed, it may complicate updates and introduce data redundancy. Denormalization is a trade-off, suitable for scenarios where read efficiency is a top priority, and data updates are less frequent or critical. Analyze the trade-offs carefully based on your application's requirements.
+
+### Normalized vs. Denormalized Data Structures
+
+**Normalized Data Structure:**
+
+- **Minimized Redundancy:** Normalization reduces redundancy for improved data integrity.
+  
+- **Data Integrity:** Breaks down data into smaller tables to maintain integrity.
+  
+- **Efficient Updates:** Updates are straightforward but may involve joins for complex queries.
+
+**Denormalized Data Structure:**
+
+- **Improved Read Performance:** Enhances query speed by intentionally introducing redundancy.
+  
+- **Simplified Queries:** Queries are often simpler due to consolidated data.
+  
+- **Increased Storage:** May lead to increased storage due to redundancy.
+
+### Considerations
+
+- **Read vs. Write Operations:** Balance between read and write operations influences the choice.
+  
+- **Data Size and Complexity:** Denormalization might be suitable for smaller datasets or applications where simplicity in querying is crucial.
+  
+- **Updates and Maintenance:** Normalized structures make updates more straightforward, while denormalized structures can complicate updates due to redundant data.
+  
+- **Use Case Specific:** There is no one-size-fits-all solution. The decision between normalized and denormalized structures depends on the specific requirements and use cases of the application.
+
+In summary, the choice between embedding and referencing, as well as normalized and denormalized structures, involves careful consideration of various factors. Analyze your application's specific needs, data characteristics, and usage patterns to determine the most suitable approach for designing relationships between entities in your database.
+
+### Embedding Reviews
 
 In MongoDB/Mongoose, one-to-many relationships can be implemented using **embedding**.
 
