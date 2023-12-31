@@ -166,7 +166,9 @@ Consider a scenario where you have a collection of blog posts and comments. Embe
 
 ### Embedding Data is an Example of a Denormalized Data Structure
 
-In denormalized data structures, redundant data is intentionally introduced to improve read performance. While it can enhance query speed, it may complicate updates and introduce data redundancy. Denormalization is a trade-off, suitable for scenarios where read efficiency is a top priority, and data updates are less frequent or critical. Analyze the trade-offs carefully based on your application's requirements.
+In denormalized data structures, redundant data is intentionally introduced to improve read performance. While it can enhance query speed, it may complicate updates due to said redundancy. Denormalization is a trade-off, suitable for scenarios where read efficiency is a top priority, and data updates are less frequent or critical.  Situations that prioritize fast and efficient read operations, tolerate some level of redundancy, involve infrequent updates, and benefit from simplified queries are well-suited for denormalized data structures. 
+
+Consider an analystics app.  In the context of an analytics dashboard presenting real-time data and insights, where complex queries and aggregations on extensive datasets are essential for meaningful visualizations, prioritizing read efficiency becomes crucial. The application's emphasis is on retrieving and presenting insights from historically collected data, diminishing the necessity for frequent updates to documents. The primary focus lies in optimizing the speed and efficiency of data retrieval to deliver timely and valuable information to users.
 
 ### Normalized vs. Denormalized Data Structures
 
@@ -196,7 +198,7 @@ In denormalized data structures, redundant data is intentionally introduced to i
   
 - **Use Case Specific:** There is no one-size-fits-all solution. The decision between normalized and denormalized structures depends on the specific requirements and use cases of the application.
 
-In summary, the choice between embedding and referencing, as well as normalized and denormalized structures, involves careful consideration of various factors. Analyze your application's specific needs, data characteristics, and usage patterns to determine the most suitable approach for designing relationships between entities in your database.
+In summary, the choice between embedding and referencing, as well as normalized and denormalized structures, involves careful consideration of various factors and usually involves domain expertise in order to make informed decisions. Analyze your application's specific needs, data characteristics, and usage patterns to determine the most suitable approach for designing relationships between entities in your database.
 
 ### Embedding Reviews
 
