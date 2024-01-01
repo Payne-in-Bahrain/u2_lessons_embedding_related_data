@@ -622,11 +622,11 @@ Also, don't forget to check out the<br>_Further Study_ section which shows you h
 
 <details>
 <summary>
-(3) True or False: An embedded subdocument must have its <code>save()</code> method called to be persisted to the database.
+(3) True or False: An embedded subdocument must have the <code>save()</code> method called on the parent document to be persisted to the database.
 </summary>
 <hr>
 
-**False**.  Tricky question because embedded subdocs are saved when the top-level document they are embedded within is saved.
+**True**.  True, the top-level/parent document they are embedded within is saved.
 
 <hr>
 </details>
